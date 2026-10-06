@@ -3,7 +3,7 @@ package com.first.genProject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.first.genProject", "Service"})
+@SpringBootApplication
 public class GenProjectApplication {
 
 	public static void main(String[] args) {
