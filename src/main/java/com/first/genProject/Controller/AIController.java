@@ -1,6 +1,5 @@
 package com.first.genProject.Controller;
 
-import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,20 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.first.genProject.service.AiService;
+
 @RestController
 @RequestMapping
 public class AIController {
 
-    private final ChatClient chatClient;
+    private final AiService aiService;
 
-    public AIController(ChatClient.Builder builder) {
-        this.chatClient = builder.build();
+    public AIController(AiService aiService) {
+        this.aiService = aiService;
     }
 
     @GetMapping("/chat")
     public ResponseEntity<String> chat(@RequestParam("q") String q) {
-        String resultResponse = chatClient.prompt(q).call().content();
-        return ResponseEntity.ok(resultResponse);
+        return ResponseEntity.ok(aiService.chat(q));
     }
 
     @ExceptionHandler(Exception.class)
