@@ -13,17 +13,21 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.first.genProject.service.AiService;
 
+import entity.chatEntity;
+
 class AIControllerTest {
 
     @Test
     void chatPassesQueryToServiceAndReturnsResponse() throws Exception {
         AiService aiService = mock(AiService.class);
-        when(aiService.chat("hello")).thenReturn("response");
+        when(aiService.chat("hello")).thenReturn(new chatEntity("title", "response", "2026"));
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(new AIController(aiService)).build();
 
         mockMvc.perform(get("/chat").param("q", "hello"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("response"));
+                .andExpect(content().json("""
+                        {"title":"title","content":"response","createdYear":"2026"}
+                        """));
 
         verify(aiService).chat("hello");
     }

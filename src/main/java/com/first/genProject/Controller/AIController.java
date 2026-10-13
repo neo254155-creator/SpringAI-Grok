@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.first.genProject.service.AiService;
 
+import entity.chatEntity;
+
 @RestController
 @RequestMapping
 public class AIController {
@@ -21,7 +23,7 @@ public class AIController {
     }
 
     @GetMapping("/chat")
-    public ResponseEntity<String> chat(@RequestParam("q") String q) {
+    public ResponseEntity<chatEntity> chat(@RequestParam("q") String q) {
         return ResponseEntity.ok(aiService.chat(q));
     }
 

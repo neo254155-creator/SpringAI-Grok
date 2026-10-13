@@ -1,5 +1,7 @@
 package com.first.genProject.service;
 
+import entity.chatEntity;
+
 public interface AiService {
-    String chat(String query);
+    chatEntity chat(String query);
 }
