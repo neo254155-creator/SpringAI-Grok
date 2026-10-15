@@ -11,13 +11,14 @@ public class AIServiceImpl implements AiService {
 
     private final ChatClient chatClient;
 
-    public AIServiceImpl(OpenAiChatModel chatModel) {
-        this.chatClient = ChatClient.create(chatModel);
+    public AIServiceImpl(ChatClient chatClient) {
+        this.chatClient = chatClient;
     }
 
     @Override
     public chatEntity chat(String query) {
         return chatClient.prompt(query)
+        		
                 .system("Act as an HR of a multinational company")
                 .call()
                 .entity(chatEntity.class);
