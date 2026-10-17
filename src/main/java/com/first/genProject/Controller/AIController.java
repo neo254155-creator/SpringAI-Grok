@@ -22,10 +22,16 @@ public class AIController {
         this.aiService = aiService;
     }
 
+//    @GetMapping("/chat")
+//    public ResponseEntity<chatEntity> chat(@RequestParam("q") String q) {
+//        return ResponseEntity.ok(aiService.chat(q));
+//    }
     @GetMapping("/chat")
-    public ResponseEntity<chatEntity> chat(@RequestParam("q") String q) {
-        return ResponseEntity.ok(aiService.chat(q));
+    public ResponseEntity<String> chat() {
+        return ResponseEntity.ok(aiService.ChatTemplate());
     }
+    
+    
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception e) {

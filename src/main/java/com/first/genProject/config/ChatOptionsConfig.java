@@ -12,9 +12,9 @@ public class ChatOptionsConfig {
 	public ChatClient chatClient (ChatClient.Builder builder) {
 		return builder
 				.defaultOptions(OpenAiChatOptions.builder()
-				.model("Grok 4.7")
+				
 				.temperature(0.2)
-				.maxTokens(500)
+				.maxTokens(100)
 				).build();
 	}
 	
